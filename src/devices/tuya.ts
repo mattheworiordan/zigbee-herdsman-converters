@@ -4813,6 +4813,8 @@ const definitions: DefinitionWithExtend[] = [
                     'When the room temperature is lower than 5 °C, the valve opens; when the temperature rises to 8 °C, the valve closes.',
                 ),
             e.numeric('error', ea.STATE).withDescription('If NTC is damaged, "Er" will be on the TRV display.'),
+            e.window_detection(),
+            e.binary('window', ea.STATE, 'CLOSE', 'OPEN').withDescription('Window status closed or open '),
         ],
         meta: {
             tuyaDatapoints: [
@@ -4821,6 +4823,8 @@ const definitions: DefinitionWithExtend[] = [
                 [4, 'current_heating_setpoint', tuya.valueConverter.divideBy10],
                 [5, 'local_temperature', tuya.valueConverter.divideBy10],
                 [7, 'child_lock', tuya.valueConverter.lockUnlock],
+                [14, 'window_detection', tuya.valueConverter.onOff],
+                [15, 'window_open', tuya.valueConverter.onOff],
                 [28, 'schedule_monday', tuya.valueConverter.thermostatScheduleDayMultiDPWithDayNumber(1, 6)],
                 [29, 'schedule_tuesday', tuya.valueConverter.thermostatScheduleDayMultiDPWithDayNumber(2, 6)],
                 [30, 'schedule_wednesday', tuya.valueConverter.thermostatScheduleDayMultiDPWithDayNumber(3, 6)],
